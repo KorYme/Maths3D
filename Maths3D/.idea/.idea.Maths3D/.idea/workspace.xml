@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f85ba259-1330-4c22-bf37-7540f000f0f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Maths3DClass/MatrixInt.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Maths3DClass/Tests07_TransposeMatrices.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Maths3D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Maths3D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maths3D.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Maths3D.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Maths3DClass/obj/Debug/net8.0/Maths3DClass.sourcelink.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -29,6 +37,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "6e20ba6c-b276-4eba-8622-80b4944ab325.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
@@ -47,7 +56,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726647788605</updated>
-      <workItem from="1726647790151" duration="1372000" />
+      <workItem from="1726647790151" duration="3328000" />
     </task>
     <servers />
   </component>
