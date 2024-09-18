@@ -1,0 +1,6 @@
+C:\GitHub\C# Projects\Maths3D\Maths3D\Maths3DClass\obj\Debug\net8.0\Maths3DClass.csproj.AssemblyReference.cache
+C:\GitHub\C# Projects\Maths3D\Maths3D\Maths3DClass\obj\Debug\net8.0\Maths3DClass.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub\C# Projects\Maths3D\Maths3D\Maths3DClass\obj\Debug\net8.0\Maths3DClass.AssemblyInfoInputs.cache
+C:\GitHub\C# Projects\Maths3D\Maths3D\Maths3DClass\obj\Debug\net8.0\Maths3DClass.AssemblyInfo.cs
+C:\GitHub\C# Projects\Maths3D\Maths3D\Maths3DClass\obj\Debug\net8.0\Maths3DClass.csproj.CoreCompileInputs.cache
+C:\GitHub\C# Projects\Maths3D\Maths3D\Maths3DClass\obj\Debug\net8.0\Maths3DClass.sourcelink.json
