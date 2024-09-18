@@ -84,21 +84,25 @@ public struct MatrixInt
         return this;
     }
 
-    public MatrixInt Add(MatrixInt matrix1)
+    public MatrixInt Add(MatrixInt otherMatrix)
     {
-        if (NbLines != matrix1.NbLines || NbColumns != matrix1.NbColumns)
+        if (NbLines != otherMatrix.NbLines || NbColumns != otherMatrix.NbColumns)
         {
             throw new MatrixSumException();
         }
-
         for (int row = 0; row < NbLines; row++)
         {
             for (int column = 0; column < NbColumns; column++)
             {
-                this[row, column] += matrix1[row, column];
+                this[row, column] += otherMatrix[row, column];
             }
         }
         return this;
+    }
+
+    public MatrixInt Multiply(MatrixInt otherMatrix)
+    {
+        return Multiply(this, otherMatrix);
     }
     
     public MatrixInt Transpose()
@@ -134,10 +138,30 @@ public struct MatrixInt
         return newMatrix.Multiply(factor);;
     }
 
-    public static MatrixInt Add(MatrixInt matrix1, MatrixInt matrix2)
+    public static MatrixInt Add(MatrixInt otherMatrix, MatrixInt matrix2)
     {
-        MatrixInt newMatrix = new MatrixInt(matrix1);
+        MatrixInt newMatrix = new MatrixInt(otherMatrix);
         return newMatrix.Add(matrix2);
+    }
+
+    public static MatrixInt Multiply(MatrixInt matrix1, MatrixInt matrix2)
+    {
+        if (matrix1.NbColumns != matrix2.NbLines)
+        {
+            throw new MatrixMultiplyException();
+        }
+        MatrixInt newMatrix = new MatrixInt(matrix1.NbLines, matrix2.NbColumns);
+        for (int row = 0; row < newMatrix.NbLines; row++)
+        {
+            for (int column = 0; column < newMatrix.NbColumns; column++)
+            {
+                for (int index = 0; index < matrix1.NbColumns; index++)
+                {
+                    newMatrix[row, column] += matrix1[row, index] * matrix2[index, column];
+                }
+            }
+        }
+        return newMatrix;
     }
     
     public static MatrixInt Transpose(MatrixInt matrix)
@@ -176,6 +200,11 @@ public struct MatrixInt
     {
         MatrixInt newMatrix = new MatrixInt(matrix1);
         return newMatrix.Add(-matrix2);
+    }
+
+    public static MatrixInt operator*(MatrixInt matrix1, MatrixInt matrix2)
+    {
+        return Multiply(matrix1, matrix2);
     }
 #endregion
 }
