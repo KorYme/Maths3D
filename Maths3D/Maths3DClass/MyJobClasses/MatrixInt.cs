@@ -71,7 +71,36 @@ public struct MatrixInt
         }
         return true;
     }
+    
+    public MatrixInt Multiply(int factor)
+    {
+        for (int row = 0; row < NbLines; row++)
+        {
+            for (int column = 0; column < NbColumns; column++)
+            {
+                this[row, column] *= factor;
+            }
+        }
+        return this;
+    }
 
+    public MatrixInt Add(MatrixInt matrix1)
+    {
+        if (NbLines != matrix1.NbLines || NbColumns != matrix1.NbColumns)
+        {
+            throw new MatrixSumException();
+        }
+
+        for (int row = 0; row < NbLines; row++)
+        {
+            for (int column = 0; column < NbColumns; column++)
+            {
+                this[row, column] += matrix1[row, column];
+            }
+        }
+        return this;
+    }
+    
     public MatrixInt Transpose()
     {
         int[,] tmp = new int[NbColumns, NbLines];
@@ -86,17 +115,6 @@ public struct MatrixInt
         return new MatrixInt(tmp);
     }
 
-    public MatrixInt Multiply(int factor)
-    {
-        for (int row = 0; row < NbLines; row++)
-        {
-            for (int column = 0; column < NbColumns; column++)
-            {
-                this[row, column] *= factor;
-            }
-        }
-        return this;
-    }
     #endregion
 
     #region STATIC METHODS
@@ -110,31 +128,54 @@ public struct MatrixInt
         return matrix;
     }
     
-    public static MatrixInt Transpose(MatrixInt matrix)
-    {
-        return matrix.Transpose();
-    }
-
     public static MatrixInt Multiply(MatrixInt matrix, int factor)
     {
         MatrixInt newMatrix = new MatrixInt(matrix);
-        newMatrix.Multiply(factor);
-        return newMatrix;
+        return newMatrix.Multiply(factor);;
+    }
+
+    public static MatrixInt Add(MatrixInt matrix1, MatrixInt matrix2)
+    {
+        MatrixInt newMatrix = new MatrixInt(matrix1);
+        return newMatrix.Add(matrix2);
     }
     
+    public static MatrixInt Transpose(MatrixInt matrix)
+    {
+        MatrixInt newMatrix = new MatrixInt(matrix);
+        return newMatrix.Transpose();
+    }
+    #endregion
+    
+    #region OPERATOR OVERRIDES
     public static MatrixInt operator*(MatrixInt matrix, int factor)
     {
-        return matrix.Multiply(factor);
+        MatrixInt newMatrix = new MatrixInt(matrix);
+        return newMatrix.Multiply(factor);
     }
     
     public static MatrixInt operator*(int factor, MatrixInt matrix)
     {
-        return matrix.Multiply(factor);
+        MatrixInt newMatrix = new MatrixInt(matrix);
+        return newMatrix.Multiply(factor);
     }
 
-    public static MatrixInt operator -(MatrixInt matrix)
+    public static MatrixInt operator-(MatrixInt matrix)
     {
-        return matrix.Multiply(-1);
+        MatrixInt newMatrix = new MatrixInt(matrix);
+        return newMatrix.Multiply(-1);
     }
-    #endregion
+
+    public static MatrixInt operator+(MatrixInt matrix1, MatrixInt matrix2)
+    {
+        MatrixInt newMatrix = new MatrixInt(matrix1);
+        return newMatrix.Add(matrix2);
+    }
+
+    public static MatrixInt operator-(MatrixInt matrix1, MatrixInt matrix2)
+    {
+        MatrixInt newMatrix = new MatrixInt(matrix1);
+        return newMatrix.Add(-matrix2);
+    }
+#endregion
 }
