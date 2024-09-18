@@ -3,10 +3,8 @@ namespace Maths_Matrices.Tests;
 public struct MatrixInt
 {
     private int[,] m_matrix;
-    
-    public int NbLines => m_matrix.GetLength(0);
-    public int NbColumns => m_matrix.GetLength(1);
 
+    #region CONSTRUCTORS
     public MatrixInt(int[,] matrix)
     {
         m_matrix = matrix;
@@ -21,7 +19,12 @@ public struct MatrixInt
     {
         m_matrix = copy.ToArray2D();
     }
+    #endregion
 
+    #region PROPERTIES
+    public int NbLines => m_matrix.GetLength(0);
+    public int NbColumns => m_matrix.GetLength(1);
+    
     public int this[int rowIndex, int columnIndex]
     {
         get
@@ -46,17 +49,9 @@ public struct MatrixInt
     {
         return (int[,])m_matrix.Clone();
     }
-
-    public static MatrixInt Identity(int size)
-    {
-        MatrixInt matrix = new MatrixInt(size, size);
-        for (int i = 0; i < size; i++)
-        {
-            matrix[i, i] = 1;
-        }
-        return matrix;
-    }
-
+    #endregion
+    
+    #region METHODS
     public bool IsIdentity()
     {
         if (NbLines != NbColumns)
@@ -74,7 +69,6 @@ public struct MatrixInt
                 }
             }
         }
-
         return true;
     }
 
@@ -92,9 +86,55 @@ public struct MatrixInt
         return new MatrixInt(tmp);
     }
 
-    public static MatrixInt Transpose(MatrixInt matrix)
+    public MatrixInt Multiply(int factor)
     {
-        matrix = matrix.Transpose();
+        for (int row = 0; row < NbLines; row++)
+        {
+            for (int column = 0; column < NbColumns; column++)
+            {
+                this[row, column] *= factor;
+            }
+        }
+        return this;
+    }
+    #endregion
+
+    #region STATIC METHODS
+    public static MatrixInt Identity(int size)
+    {
+        MatrixInt matrix = new MatrixInt(size, size);
+        for (int i = 0; i < size; i++)
+        {
+            matrix[i, i] = 1;
+        }
         return matrix;
     }
+    
+    public static MatrixInt Transpose(MatrixInt matrix)
+    {
+        return matrix.Transpose();
+    }
+
+    public static MatrixInt Multiply(MatrixInt matrix, int factor)
+    {
+        MatrixInt newMatrix = new MatrixInt(matrix);
+        newMatrix.Multiply(factor);
+        return newMatrix;
+    }
+    
+    public static MatrixInt operator*(MatrixInt matrix, int factor)
+    {
+        return matrix.Multiply(factor);
+    }
+    
+    public static MatrixInt operator*(int factor, MatrixInt matrix)
+    {
+        return matrix.Multiply(factor);
+    }
+
+    public static MatrixInt operator -(MatrixInt matrix)
+    {
+        return matrix.Multiply(-1);
+    }
+    #endregion
 }
