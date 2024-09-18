@@ -47,6 +47,37 @@ public struct MatrixInt
         return (int[,])m_matrix.Clone();
     }
 
+    public static MatrixInt Identity(int size)
+    {
+        MatrixInt matrix = new MatrixInt(size, size);
+        for (int i = 0; i < size; i++)
+        {
+            matrix[i, i] = 1;
+        }
+        return matrix;
+    }
+
+    public bool IsIdentity()
+    {
+        if (NbLines != NbColumns)
+        {
+            return false;
+        }
+
+        for (int row = 0; row < NbLines; row++)
+        {
+            for (int column = 0; column < NbColumns; column++)
+            {
+                if (row == column && this[row, column] != 1 || row != column && this[row, column] != 0)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public MatrixInt Transpose()
     {
         int[,] tmp = new int[NbColumns, NbLines];
