@@ -118,7 +118,27 @@ public struct MatrixInt
         }
         return new MatrixInt(tmp);
     }
-
+    
+    public (MatrixInt m1, MatrixInt m2) Split(int maxIndex)
+    {
+        MatrixInt m1 = new MatrixInt(NbLines, maxIndex + 1);
+        MatrixInt m2 = new MatrixInt(NbLines, NbColumns - maxIndex - 1);
+        for (int lineIndex = 0; lineIndex < NbLines; lineIndex++)
+        {
+            for (int columnIndex = 0; columnIndex < NbColumns; columnIndex++)
+            {
+                if (columnIndex <= maxIndex)
+                {
+                    m1[lineIndex, columnIndex] = this[lineIndex, columnIndex];
+                }
+                else
+                {
+                    m2[lineIndex, columnIndex - maxIndex - 1] = this[lineIndex, columnIndex];
+                }
+            }
+        }
+        return (m1, m2);
+    }
     #endregion
 
     #region STATIC METHODS
@@ -169,6 +189,26 @@ public struct MatrixInt
         MatrixInt newMatrix = new MatrixInt(matrix);
         return newMatrix.Transpose();
     }
+    
+    public static MatrixInt GenerateAugmentedMatrix(MatrixInt m1, MatrixInt m2)
+    {
+        MatrixInt matrix = new MatrixInt(m1.NbLines, m1.NbColumns + 1);
+        for (int lineIndex = 0; lineIndex < matrix.NbLines; lineIndex++)
+        {
+            for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
+            {
+                if (columnIndex != m1.NbColumns)
+                {
+                    matrix[lineIndex, columnIndex] = m1[lineIndex, columnIndex];
+                }
+                else
+                {
+                    matrix[lineIndex, columnIndex] = m2[lineIndex, 0];
+                }
+            }
+        }
+        return matrix;
+    }
     #endregion
     
     #region OPERATOR OVERRIDES
@@ -206,5 +246,5 @@ public struct MatrixInt
     {
         return Multiply(matrix1, matrix2);
     }
-#endregion
+    #endregion
 }
