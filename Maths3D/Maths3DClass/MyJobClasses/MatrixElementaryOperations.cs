@@ -1,8 +1,10 @@
+using System.Numerics;
+
 namespace Maths_Matrices.Tests;
 
 public static class MatrixElementaryOperations
 {
-    public static void SwapLines(Matrix<int> matrix, int indexLine1, int indexLine2)
+    public static void SwapLines<T>(Matrix<T> matrix, int indexLine1, int indexLine2) where T : INumber<T>
     {
         for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
         {
@@ -12,7 +14,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void SwapColumns(Matrix<int> matrix, int indexColumn1, int indexColumn2)
+    public static void SwapColumns<T>(Matrix<T> matrix, int indexColumn1, int indexColumn2) where T : INumber<T>
     {
         for (int lineIndex = 0; lineIndex < matrix.NbLines; lineIndex++)
         {
@@ -22,9 +24,9 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void MultiplyLine(Matrix<int> matrix, int lineIndex, int factor)
+    public static void MultiplyLine<T>(Matrix<T> matrix, int lineIndex, T factor) where T : INumber<T>
     {
-        if (factor == 0)
+        if (T.IsZero(factor))
         {
             throw new MatrixScalarZeroException();
         }
@@ -34,9 +36,9 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void MultiplyColumn(Matrix<int> matrix, int columnIndex, int factor)
+    public static void MultiplyColumn<T>(Matrix<T> matrix, int columnIndex, T factor) where T : INumber<T>
     {
-        if (factor == 0)
+        if (T.IsZero(factor))
         {
             throw new MatrixScalarZeroException();
         }
@@ -46,7 +48,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void AddLineToAnother(Matrix<int> matrix, int lineToAdd, int lineToChange, int factor)
+    public static void AddLineToAnother<T>(Matrix<T> matrix, int lineToAdd, int lineToChange, T factor) where T : INumber<T>
     {
         for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
         {
@@ -54,7 +56,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void AddColumnToAnother(Matrix<int> matrix, int columnToAdd, int columnToChange, int factor)
+    public static void AddColumnToAnother<T>(Matrix<T> matrix, int columnToAdd, int columnToChange, T factor) where T : INumber<T>
     {
         for (int lineIndex = 0; lineIndex < matrix.NbColumns; lineIndex++)
         {

@@ -76,7 +76,6 @@ namespace Maths_Matrices.Tests
                 { 0f },
                 { 0f }
             }, m2.ToArray2D());
-            GlobalSettings.DefaultFloatingPointTolerance = 0.0d;
         }
     }
 }
