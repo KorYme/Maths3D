@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\GitHub\\C# Projects\\Maths3D\\Maths3D\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{24D33458-EBE5-4CFD-8D42-DA3B55C36F7F}|Maths3DClass\\Maths3DClass.csproj|c:\\github\\c# projects\\maths3d\\maths3d\\maths3dclass\\tests10_rowreduction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24D33458-EBE5-4CFD-8D42-DA3B55C36F7F}|Maths3DClass\\Maths3DClass.csproj|solutionrelative:maths3dclass\\tests10_rowreduction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Tests10_RowReduction.cs",
+              "DocumentMoniker": "C:\\GitHub\\C# Projects\\Maths3D\\Maths3D\\Maths3DClass\\Tests10_RowReduction.cs",
+              "RelativeDocumentMoniker": "Maths3DClass\\Tests10_RowReduction.cs",
+              "ToolTip": "C:\\GitHub\\C# Projects\\Maths3D\\Maths3D\\Maths3DClass\\Tests10_RowReduction.cs",
+              "RelativeToolTip": "Maths3DClass\\Tests10_RowReduction.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T07:22:03.93Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
