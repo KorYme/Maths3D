@@ -2,7 +2,7 @@ using System.Numerics;
 
 namespace Maths_Matrices.Tests;
 
-public class Matrix<T> where T : INumber<T>
+public struct Matrix<T> where T : INumber<T>
 {
     private T[,] m_matrix;
 
@@ -141,6 +141,16 @@ public class Matrix<T> where T : INumber<T>
         }
         return (m1, m2);
     }
+    
+    public Matrix<T> InvertByRowReduction()
+    {
+        if (NbLines != NbColumns)
+        {
+            throw new MatrixInvertException();
+        }
+        (Matrix<T> m1, Matrix<T> m2) = MatrixRowReductionAlgorithm.Apply(new Matrix<T>(this), Matrix<T>.Identity(NbLines), true);
+        return m2;
+    }
     #endregion
 
     #region STATIC METHODS
@@ -210,6 +220,11 @@ public class Matrix<T> where T : INumber<T>
             }
         }
         return matrix;
+    }
+
+    public static Matrix<T> InvertByRowReduction(Matrix<T> matrix)
+    {
+        return matrix.InvertByRowReduction();
     }
     #endregion
     

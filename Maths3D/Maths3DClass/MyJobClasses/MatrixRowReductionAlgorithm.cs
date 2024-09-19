@@ -4,7 +4,7 @@ namespace Maths_Matrices.Tests;
 
 public static class MatrixRowReductionAlgorithm
 {
-    public static (Matrix<T> m1, Matrix<T> m2) Apply<T>(Matrix<T> m1, Matrix<T> m2) where T : INumber<T>
+    public static (Matrix<T> m1, Matrix<T> m2) Apply<T>(Matrix<T> m1, Matrix<T> m2, bool isExceptionThrown = false) where T : INumber<T>
     {
         for (int step = 0; step < int.Min(m1.NbLines, m2.NbLines); step++)
         {
@@ -12,7 +12,7 @@ public static class MatrixRowReductionAlgorithm
             int maxLineIndex = step;
             for (int k = step + 1; k < m1.NbLines; k++)
             {
-                if (m1[k, step] > m1[step, step] && !T.IsZero(m1[k, step]))
+                if ((T.IsZero(m1[maxLineIndex, step]) || m1[k, step] > m1[step, step]) && !T.IsZero(m1[k, step]))
                 {
                     maxLineIndex = k;
                 }
@@ -37,6 +37,10 @@ public static class MatrixRowReductionAlgorithm
                         MatrixElementaryOperations.AddLineToAnother(m2, step, r, factor);
                     }
                 }
+            }
+            else if (isExceptionThrown)
+            {
+                throw new MatrixInvertException();
             }
         }
         return (m1, m2);
