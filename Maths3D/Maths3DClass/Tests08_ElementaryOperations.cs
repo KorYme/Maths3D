@@ -10,7 +10,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestSwapLines()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -45,7 +45,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestSwapColumns()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 4, 7 },
                 { 2, 5, 8 },
@@ -84,7 +84,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestMultiplyLine()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -124,7 +124,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestMultiplyColumn()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 4, 7 },
                 { 2, 5, 8 },
@@ -168,7 +168,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestAddLineToAnother()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -187,7 +187,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestAddColumnToAnother()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 4, 7 },
                 { 2, 5, 8 },

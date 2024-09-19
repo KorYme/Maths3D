@@ -8,14 +8,14 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestSumMatricesInstances()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
             {
                 { 1, 7 },
                 { 8, 5 },
                 { 4, 17 }
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            Matrix<int> m2 = new Matrix<int>(new[,]
             {
                 { 65, 4 },
                 { 3, 1 },
@@ -42,21 +42,21 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestSumMatricesStatic()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
             {
                 { 1, 7 },
                 { 8, 5 },
                 { 4, 17 }
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            Matrix<int> m2 = new Matrix<int>(new[,]
             {
                 { 65, 4 },
                 { 3, 1 },
                 { 48, 2 }
             });
 
-            MatrixInt m3 = MatrixInt.Add(m1, m2);
+            Matrix<int> m3 = Matrix<int>.Add(m1, m2);
             
             Assert.AreEqual(new[,]
             {
@@ -83,21 +83,21 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestSumMatricesOperator()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
             {
                 { 1, 7 },
                 { 8, 5 },
                 { 4, 17 }
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            Matrix<int> m2 = new Matrix<int>(new[,]
             {
                 { 65, 4 },
                 { 3, 1 },
                 { 48, 2 }
             });
 
-            MatrixInt m3 = m1 + m2;
+            Matrix<int> m3 = m1 + m2;
             
             Assert.AreEqual(new[,]
             {
@@ -124,21 +124,21 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestSubtractMatricesOperator()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
             {
                 { 1, 62 },
                 { 17, 2 },
                 { 3, 5 },
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            Matrix<int> m2 = new Matrix<int>(new[,]
             {
                 {-3, 51},
                 {9, 1},
                 {4, 18},
             });
 
-            MatrixInt m3 = m1 - m2;
+            Matrix<int> m3 = m1 - m2;
             
             Assert.AreEqual(new[,]
             {
@@ -151,13 +151,13 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestImpossibleSumMatrices()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
             {
                 { 3, 4 },
                 { 8, 5 },
             });
 
-            MatrixInt m2 = new MatrixInt(new[,]
+            Matrix<int> m2 = new Matrix<int>(new[,]
             {
                 { 1, 7 },
                 { 7, 4 },
@@ -176,12 +176,12 @@ namespace Maths_Matrices.Tests
             
             Assert.Throws<MatrixSumException>(() =>
             {
-                MatrixInt.Add(m1, m2);
+                Matrix<int>.Add(m1, m2);
             });
             
             Assert.Throws<MatrixSumException>(() =>
             {
-                MatrixInt m3 = m1 + m2;
+                Matrix<int> m3 = m1 + m2;
             });
         }
     }

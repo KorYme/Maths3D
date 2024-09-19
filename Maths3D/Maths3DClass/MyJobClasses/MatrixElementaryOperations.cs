@@ -2,7 +2,7 @@ namespace Maths_Matrices.Tests;
 
 public static class MatrixElementaryOperations
 {
-    public static void SwapLines(MatrixInt matrix, int indexLine1, int indexLine2)
+    public static void SwapLines(Matrix<int> matrix, int indexLine1, int indexLine2)
     {
         for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
         {
@@ -12,7 +12,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void SwapColumns(MatrixInt matrix, int indexColumn1, int indexColumn2)
+    public static void SwapColumns(Matrix<int> matrix, int indexColumn1, int indexColumn2)
     {
         for (int lineIndex = 0; lineIndex < matrix.NbLines; lineIndex++)
         {
@@ -22,7 +22,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void MultiplyLine(MatrixInt matrix, int lineIndex, int factor)
+    public static void MultiplyLine(Matrix<int> matrix, int lineIndex, int factor)
     {
         if (factor == 0)
         {
@@ -34,7 +34,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void MultiplyColumn(MatrixInt matrix, int columnIndex, int factor)
+    public static void MultiplyColumn(Matrix<int> matrix, int columnIndex, int factor)
     {
         if (factor == 0)
         {
@@ -46,7 +46,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void AddLineToAnother(MatrixInt matrix, int lineToAdd, int lineToChange, int factor)
+    public static void AddLineToAnother(Matrix<int> matrix, int lineToAdd, int lineToChange, int factor)
     {
         for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
         {
@@ -54,7 +54,7 @@ public static class MatrixElementaryOperations
         }
     }
 
-    public static void AddColumnToAnother(MatrixInt matrix, int columnToAdd, int columnToChange, int factor)
+    public static void AddColumnToAnother(Matrix<int> matrix, int columnToAdd, int columnToChange, int factor)
     {
         for (int lineIndex = 0; lineIndex < matrix.NbColumns; lineIndex++)
         {

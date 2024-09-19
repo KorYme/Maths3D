@@ -8,13 +8,13 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestTransposeMatrixInstance()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
             });
 
-            MatrixInt m1t = m1.Transpose();
+            Matrix<int> m1t = m1.Transpose();
 
             Assert.AreEqual(new[,]
             {
@@ -27,13 +27,13 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestTransposeMatrixStatic()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 }
             });
 
-            MatrixInt m1t = MatrixInt.Transpose(m1);
+            Matrix<int> m1t = Matrix<int>.Transpose(m1);
 
             Assert.AreEqual(new[,]
             {

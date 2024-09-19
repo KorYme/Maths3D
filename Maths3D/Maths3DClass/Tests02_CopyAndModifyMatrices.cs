@@ -8,7 +8,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestModifyMatrix()
         {
-            MatrixInt m = new MatrixInt(2, 2);
+            Matrix<int> m = new Matrix<int>(2, 2);
             Assert.AreEqual(new[,]
             {
                 { 0, 0 },
@@ -32,7 +32,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestCopyAndChangeMatrices()
         {
-            MatrixInt m1 = new MatrixInt(new[,]
+            Matrix<int> m1 = new Matrix<int>(new[,]
                 {
                     { 1, 2, 3 },
                     { 4, 5, 6 },
@@ -40,7 +40,7 @@ namespace Maths_Matrices.Tests
                 }
             );
 
-            MatrixInt m2 = new MatrixInt(m1);
+            Matrix<int> m2 = new Matrix<int>(m1);
             m2[0, 0] = 23;
 
             Assert.AreEqual(new[,]

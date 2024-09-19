@@ -8,7 +8,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestNewEmptyMatrices()
         {
-            MatrixInt m1 = new MatrixInt(3, 2);
+            Matrix<int> m1 = new Matrix<int>(3, 2);
             Assert.AreEqual(new[,]
             {
                 { 0, 0 },
@@ -18,7 +18,7 @@ namespace Maths_Matrices.Tests
             Assert.AreEqual(3, m1.NbLines);
             Assert.AreEqual(2, m1.NbColumns);
 
-            MatrixInt m2 = new MatrixInt(2, 3);
+            Matrix<int> m2 = new Matrix<int>(2, 3);
             Assert.AreEqual(new[,]
             {
                 { 0, 0, 0 },
@@ -33,7 +33,7 @@ namespace Maths_Matrices.Tests
         {
             //See GetLength documentation to retrieve length of a multi-dimensional array
             //https://docs.microsoft.com/en-us/dotnet/api/system.array.getlength
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
                 {
                     { 1, 2, 3 },
                     { 4, 5, 6 },

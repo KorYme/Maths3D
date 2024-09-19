@@ -8,7 +8,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestScalarMultiplicationInstance()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -28,14 +28,14 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestScalarMultiplicationStatic()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 0, 0, 0 },
                 { 0, 5, 0 },
                 { 0, 0, 0 }
             });
 
-            MatrixInt m2 = MatrixInt.Multiply(m, 5);
+            Matrix<int> m2 = Matrix<int>.Multiply(m, 5);
 
             Assert.AreEqual(new[,]
             {
@@ -55,7 +55,7 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestScalarMultiplicationOperator()
         {
-            MatrixInt m = new MatrixInt(new[,]
+            Matrix<int> m = new Matrix<int>(new[,]
             {
                 { 1, 2, 3 },
                 { 4, 5, 6 },
@@ -64,7 +64,7 @@ namespace Maths_Matrices.Tests
 
             //See Operator overloading documentation =>
             //https://docs.microsoft.com/fr-fr/dotnet/csharp/language-reference/operators/operator-overloading
-            MatrixInt m2 = m * 2;
+            Matrix<int> m2 = m * 2;
 
             Assert.AreEqual(new[,]
             {
@@ -80,7 +80,7 @@ namespace Maths_Matrices.Tests
                 { 7, 8, 9 }
             }, m.ToArray2D());
 
-            MatrixInt m4 = 4 * m;
+            Matrix<int> m4 = 4 * m;
             
             Assert.AreEqual(new[,]
             {
@@ -93,14 +93,14 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestNegativeMatrix()
         {
-            MatrixInt m1 = new MatrixInt(new int[,]
+            Matrix<int> m1 = new Matrix<int>(new int[,]
             {
                 { -1, 2, 3 },
                 { 4, -5, 6 },
                 { -7, 8, 9 }
             });
 
-            MatrixInt m2 = -m1;
+            Matrix<int> m2 = -m1;
             
             Assert.AreEqual(new[,]
             {

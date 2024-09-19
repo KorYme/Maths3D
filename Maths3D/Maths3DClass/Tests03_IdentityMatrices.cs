@@ -8,14 +8,14 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestGenerateIdentityMatrices()
         {
-            MatrixInt identity2 = MatrixInt.Identity(2);
+            Matrix<int> identity2 = Matrix<int>.Identity(2);
             Assert.AreEqual(new[,]
             {
                 { 1, 0 },
                 { 0, 1 },
             }, identity2.ToArray2D());
 
-            MatrixInt identity3 = MatrixInt.Identity(3);
+            Matrix<int> identity3 = Matrix<int>.Identity(3);
             Assert.AreEqual(new[,]
             {
                 { 1, 0, 0 },
@@ -23,7 +23,7 @@ namespace Maths_Matrices.Tests
                 { 0, 0, 1 },
             }, identity3.ToArray2D());
 
-            MatrixInt identity4 = MatrixInt.Identity(4);
+            Matrix<int> identity4 = Matrix<int>.Identity(4);
             Assert.AreEqual(new[,]
             {
                 { 1, 0, 0, 0 },
@@ -36,14 +36,14 @@ namespace Maths_Matrices.Tests
         [Test]
         public void TestMatricesIsIdentity()
         {
-            MatrixInt identity2 = new MatrixInt(new[,]
+            Matrix<int> identity2 = new Matrix<int>(new[,]
             {
                 { 1, 0 },
                 { 0, 1 }
             });
             Assert.IsTrue(identity2.IsIdentity());
 
-            MatrixInt identity3 = new MatrixInt(new[,]
+            Matrix<int> identity3 = new Matrix<int>(new[,]
             {
                 { 1, 0, 0 },
                 { 0, 1, 0 },
@@ -51,14 +51,14 @@ namespace Maths_Matrices.Tests
             });
             Assert.IsTrue(identity3.IsIdentity());
 
-            MatrixInt notSameColumnsAndLines = new MatrixInt(new[,]
+            Matrix<int> notSameColumnsAndLines = new Matrix<int>(new[,]
             {
                 { 1, 0, 0 },
                 { 0, 1, 0 }
             });
             Assert.IsFalse(notSameColumnsAndLines.IsIdentity());
 
-            MatrixInt notIdentity1 = new MatrixInt(new[,]
+            Matrix<int> notIdentity1 = new Matrix<int>(new[,]
             {
                 { 1, 0, 0 },
                 { 0, 2, 0 },
@@ -66,7 +66,7 @@ namespace Maths_Matrices.Tests
             });
             Assert.IsFalse(notIdentity1.IsIdentity());
 
-            MatrixInt notIdentity2 = new MatrixInt(new[,]
+            Matrix<int> notIdentity2 = new Matrix<int>(new[,]
             {
                 { 1, 0, 4 },
                 { 0, 1, 0 },
