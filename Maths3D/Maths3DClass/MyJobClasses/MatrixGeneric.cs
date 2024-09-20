@@ -223,6 +223,16 @@ public struct Matrix<T> where T : INumber<T>
         }
         return matrix;
     }
+    
+    public Matrix<T> InvertByDeterminant()
+    {
+        T determinant = Determinant(this);
+        if (T.IsZero(determinant))
+        {
+            throw new MatrixInvertException();
+        }
+        return Adjugate(this) * (T.One / determinant);
+    }
     #endregion
 
     #region STATIC METHODS
@@ -332,6 +342,11 @@ public struct Matrix<T> where T : INumber<T>
     public static Matrix<T> Adjugate(Matrix<T> matrix)
     {
         return matrix.Adjugate();
+    }
+    
+    public static Matrix<T> InvertByDeterminant(Matrix<T> matrix)
+    {
+        return matrix.InvertByDeterminant();
     }
     #endregion
 }
