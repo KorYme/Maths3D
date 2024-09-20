@@ -151,6 +151,23 @@ public struct Matrix<T> where T : INumber<T>
         (Matrix<T> m1, Matrix<T> m2) = MatrixRowReductionAlgorithm.Apply(new Matrix<T>(this), Matrix<T>.Identity(NbLines), true);
         return m2;
     }
+    
+    
+    public Matrix<T> SubMatrix(int lineRemoved, int columnRemoved)
+    {
+        Matrix<T> newMatrix = new Matrix<T>(NbLines - 1, NbColumns - 1);
+        for (int lineIndex = 0; lineIndex < NbLines; lineIndex++)
+        {
+            for (int columnIndex = 0; columnIndex < NbColumns; columnIndex++)
+            {
+                if (lineIndex != lineRemoved && columnIndex != columnRemoved)
+                {
+                    newMatrix[lineIndex - (lineIndex > lineRemoved ? 1 : 0), columnIndex- (columnIndex > columnRemoved ? 1 : 0)] = this[lineIndex, columnIndex];
+                }
+            }
+        }
+        return newMatrix;
+    }
     #endregion
 
     #region STATIC METHODS
@@ -225,6 +242,11 @@ public struct Matrix<T> where T : INumber<T>
     public static Matrix<T> InvertByRowReduction(Matrix<T> matrix)
     {
         return matrix.InvertByRowReduction();
+    }
+    
+    public static Matrix<T> SubMatrix(Matrix<T> matrix, int lineRemoved, int columnRemoved)
+    {
+        return matrix.SubMatrix(lineRemoved, columnRemoved);
     }
     #endregion
     
