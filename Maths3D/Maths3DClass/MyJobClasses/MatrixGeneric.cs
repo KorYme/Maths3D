@@ -248,6 +248,27 @@ public struct Matrix<T> where T : INumber<T>
     {
         return matrix.SubMatrix(lineRemoved, columnRemoved);
     }
+    
+    public static T Determinant(Matrix<T> matrix)
+    {
+        if (matrix.NbLines != matrix.NbColumns)
+        {
+            throw new MatrixInvertException();
+        }
+
+        if (matrix.NbLines == 2)
+        {
+            return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+        }
+        
+        T determinant = T.Zero;
+        for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
+        {
+            determinant += Determinant(SubMatrix(matrix, 0, columnIndex)) 
+                           * (columnIndex % 2 == 0 ? matrix[0, columnIndex] : -matrix[0, columnIndex]);
+        }
+        return determinant;
+    }
     #endregion
     
     #region OPERATOR OVERRIDES
