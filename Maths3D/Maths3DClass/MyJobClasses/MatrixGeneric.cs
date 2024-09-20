@@ -53,6 +53,43 @@ public struct Matrix<T> where T : INumber<T>
     }
     #endregion
     
+    #region OPERATOR OVERRIDES
+    public static Matrix<T> operator*(Matrix<T> matrix, T factor)
+    {
+        Matrix<T> newMatrix = new Matrix<T>(matrix);
+        return newMatrix.Multiply(factor);
+    }
+    
+    public static Matrix<T> operator*(T factor, Matrix<T> matrix)
+    {
+        Matrix<T> newMatrix = new Matrix<T>(matrix);
+        return newMatrix.Multiply(factor);
+    }
+
+    public static Matrix<T> operator-(Matrix<T> matrix)
+    {
+        Matrix<T> newMatrix = new Matrix<T>(matrix);
+        return newMatrix.Multiply(-T.One);
+    }
+
+    public static Matrix<T> operator+(Matrix<T> matrix1, Matrix<T> matrix2)
+    {
+        Matrix<T> newMatrix = new Matrix<T>(matrix1);
+        return newMatrix.Add(matrix2);
+    }
+
+    public static Matrix<T> operator-(Matrix<T> matrix1, Matrix<T> matrix2)
+    {
+        Matrix<T> newMatrix = new Matrix<T>(matrix1);
+        return newMatrix.Add(-matrix2);
+    }
+
+    public static Matrix<T> operator*(Matrix<T> matrix1, Matrix<T> matrix2)
+    {
+        return Multiply(matrix1, matrix2);
+    }
+    #endregion
+    
     #region METHODS
     public bool IsIdentity()
     {
@@ -152,7 +189,6 @@ public struct Matrix<T> where T : INumber<T>
         return m2;
     }
     
-    
     public Matrix<T> SubMatrix(int lineRemoved, int columnRemoved)
     {
         Matrix<T> newMatrix = new Matrix<T>(NbLines - 1, NbColumns - 1);
@@ -167,6 +203,25 @@ public struct Matrix<T> where T : INumber<T>
             }
         }
         return newMatrix;
+    }
+    
+    public Matrix<T> Adjugate()
+    {
+        if (T.IsZero(Determinant(this)))
+        {
+            throw new MatrixSumException();
+        }
+        Matrix<T> matrix = new Matrix<T>(NbLines, NbColumns);
+        Matrix<T> transposedMatrix = Transpose();
+        for (int lineIndex = 0; lineIndex < NbLines; lineIndex++)
+        {
+            for (int columnIndex = 0; columnIndex < NbColumns; columnIndex++)
+            {
+                matrix[lineIndex, columnIndex] = Determinant(transposedMatrix.SubMatrix(lineIndex, columnIndex))
+                    * ((lineIndex + columnIndex) % 2 == 0 ? T.One : -T.One);
+            }
+        }
+        return matrix;
     }
     #endregion
 
@@ -255,56 +310,28 @@ public struct Matrix<T> where T : INumber<T>
         {
             throw new MatrixInvertException();
         }
-
-        if (matrix.NbLines == 2)
+        switch (matrix.NbLines)
         {
-            return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+            case 0:
+                return T.One;
+            case 1:
+                return matrix[0, 0];
+            case 2:
+                return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+            default:
+                T determinant = T.Zero;
+                for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
+                {
+                    determinant += Determinant(SubMatrix(matrix, 0, columnIndex)) 
+                                   * (columnIndex % 2 == 0 ? matrix[0, columnIndex] : -matrix[0, columnIndex]);
+                }
+                return determinant;
         }
-        
-        T determinant = T.Zero;
-        for (int columnIndex = 0; columnIndex < matrix.NbColumns; columnIndex++)
-        {
-            determinant += Determinant(SubMatrix(matrix, 0, columnIndex)) 
-                           * (columnIndex % 2 == 0 ? matrix[0, columnIndex] : -matrix[0, columnIndex]);
-        }
-        return determinant;
-    }
-    #endregion
-    
-    #region OPERATOR OVERRIDES
-    public static Matrix<T> operator*(Matrix<T> matrix, T factor)
-    {
-        Matrix<T> newMatrix = new Matrix<T>(matrix);
-        return newMatrix.Multiply(factor);
-    }
-    
-    public static Matrix<T> operator*(T factor, Matrix<T> matrix)
-    {
-        Matrix<T> newMatrix = new Matrix<T>(matrix);
-        return newMatrix.Multiply(factor);
     }
 
-    public static Matrix<T> operator-(Matrix<T> matrix)
+    public static Matrix<T> Adjugate(Matrix<T> matrix)
     {
-        Matrix<T> newMatrix = new Matrix<T>(matrix);
-        return newMatrix.Multiply(-T.One);
-    }
-
-    public static Matrix<T> operator+(Matrix<T> matrix1, Matrix<T> matrix2)
-    {
-        Matrix<T> newMatrix = new Matrix<T>(matrix1);
-        return newMatrix.Add(matrix2);
-    }
-
-    public static Matrix<T> operator-(Matrix<T> matrix1, Matrix<T> matrix2)
-    {
-        Matrix<T> newMatrix = new Matrix<T>(matrix1);
-        return newMatrix.Add(-matrix2);
-    }
-
-    public static Matrix<T> operator*(Matrix<T> matrix1, Matrix<T> matrix2)
-    {
-        return Multiply(matrix1, matrix2);
+        return matrix.Adjugate();
     }
     #endregion
 }
