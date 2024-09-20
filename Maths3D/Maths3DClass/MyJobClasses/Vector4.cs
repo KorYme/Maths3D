@@ -2,37 +2,35 @@ namespace Maths_Matrices.Tests;
 
 public struct Vector4
 {
-    private float m_x, m_y, m_z, m_w;
-
     #region PROPERTIES
-    public float x => m_x;
-    public float y => m_y;
-    public float z => m_z;
-    public float w => m_w;
+    public float x { get; private set; }
+    public float y { get; private set; }
+    public float z { get; private set; }
+    public float w { get; private set; }
     #endregion
     
     #region CONSTRUCTORS
-    public Vector4(float x, float y, float z, float w)
+    public Vector4(float x = 0f, float y = 0f, float z = 0f, float w = 0f)
     {
-        m_x = x;
-        m_y = y;
-        m_z = z;
-        m_w = w;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
     }
     
     public Vector4(Vector4 v)
     {
-        m_x = v.x;
-        m_y = v.y;
-        m_z = v.z;
-        m_w = v.w;
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+        this.w = v.w;
     }
     #endregion
 
     #region METHODS
     public Matrix<float> GetMatrix()
     {
-        return new Matrix<float>(new float[4, 1] { { m_x }, { m_y }, { m_z }, { m_w } });
+        return new Matrix<float>(new float[4, 1] { { x }, { y }, { z }, { w } });
     }
     #endregion
     
