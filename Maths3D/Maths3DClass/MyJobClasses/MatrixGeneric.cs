@@ -5,24 +5,7 @@ namespace Maths_Matrices.Tests;
 public struct Matrix<T> where T : INumber<T>
 {
     private T[,] m_matrix;
-
-    #region CONSTRUCTORS
-    public Matrix(T[,] matrix)
-    {
-        m_matrix = matrix;
-    }
-
-    public Matrix(int NbLines, int NbColumns)
-    {
-        m_matrix = new T[NbLines, NbColumns];
-    }
-
-    public Matrix(Matrix<T> copy)
-    {
-        m_matrix = copy.ToArray2D();
-    }
-    #endregion
-
+    
     #region PROPERTIES
     public int NbLines => m_matrix.GetLength(0);
     public int NbColumns => m_matrix.GetLength(1);
@@ -50,6 +33,23 @@ public struct Matrix<T> where T : INumber<T>
     public T[,] ToArray2D()
     {
         return (T[,])m_matrix.Clone();
+    }
+    #endregion
+    
+    #region CONSTRUCTORS
+    public Matrix(T[,] matrix)
+    {
+        m_matrix = matrix;
+    }
+
+    public Matrix(int NbLines, int NbColumns)
+    {
+        m_matrix = new T[NbLines, NbColumns];
+    }
+
+    public Matrix(Matrix<T> copy)
+    {
+        m_matrix = copy.ToArray2D();
     }
     #endregion
     
