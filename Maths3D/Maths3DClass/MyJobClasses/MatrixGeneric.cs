@@ -37,6 +37,12 @@ public struct Matrix<T> where T : INumber<T>
     #endregion
     
     #region CONSTRUCTORS
+
+    public Matrix()
+    {
+        m_matrix = new T[4,4];
+    }
+    
     public Matrix(T[,] matrix)
     {
         m_matrix = matrix;

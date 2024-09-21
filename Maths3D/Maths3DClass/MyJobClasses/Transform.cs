@@ -82,8 +82,21 @@ public class Transform
         });
     }
 
-    #endregion
+    // TODO
+    public Matrix<float> LocalToWorldMatrix
+    {
+        get
+        {
+            return LocalTranslationMatrix * LocalRotationMatrix * LocalScaleMatrix;
+        }
+    }
     
-    #region CONSTRUCTORS
+    public Matrix<float> WorldToLocalMatrix
+    {
+        get
+        {
+            return LocalToWorldMatrix.InvertByDeterminant();
+        }
+    }
     #endregion
 }
