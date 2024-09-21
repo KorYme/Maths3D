@@ -8,6 +8,10 @@ public struct Vector3
     public float z { get; private set; }
     #endregion
     
+    #region STATIC PROPERTIES
+    public static Vector3 One => new Vector3(1, 1, 1);
+    #endregion
+    
     #region CONSTRUCTORS
     public Vector3(float x = 0f, float y = 0f, float z = 0f)
     {

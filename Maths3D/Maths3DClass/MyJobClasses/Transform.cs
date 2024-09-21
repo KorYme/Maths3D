@@ -5,6 +5,7 @@ public class Transform
     #region PROPERTIES
     public Vector3 LocalPosition { get; set; }
     public Vector3 LocalRotation { get; set; }
+    public Vector3 LocalScale { get; set; } = Vector3.One;
 
     public Matrix<float> LocalTranslationMatrix
     {
@@ -17,7 +18,6 @@ public class Transform
         });
     }
 
-    // TO DO²
     public Matrix<float> LocalRotationXMatrix
     {
         get
@@ -70,6 +70,18 @@ public class Transform
     {
         get => LocalRotationYMatrix * LocalRotationXMatrix * LocalRotationZMatrix;
     }
+
+    public Matrix<float> LocalScaleMatrix
+    {
+        get => new Matrix<float>(new float[4, 4]
+        {
+            { LocalScale.x, 0f, 0f, 0f },
+            { 0f, LocalScale.y, 0f, 0f },
+            { 0f, 0f, LocalScale.z, 0f },
+            { 0f, 0f, 0f, 1f },
+        });
+    }
+
     #endregion
     
     #region CONSTRUCTORS
