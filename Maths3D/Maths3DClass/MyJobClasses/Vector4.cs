@@ -62,6 +62,5 @@ public struct Vector4
     #endregion
     
     #region STATIC METHODS
-    
     #endregion
 }

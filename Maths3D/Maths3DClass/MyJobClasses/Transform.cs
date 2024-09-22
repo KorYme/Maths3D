@@ -85,7 +85,6 @@ public class Transform
         });
     }
 
-    // TODO
     public Matrix<float> LocalToWorldMatrix
     {
         get => (Parent == null ? Matrix<float>.Identity(4) : Parent.LocalToWorldMatrix) 
@@ -103,6 +102,11 @@ public class Transform
         {
             Matrix<float> transformMatrix = LocalToWorldMatrix;
             return new Vector3(transformMatrix[0,3], transformMatrix[1,3], transformMatrix[2,3]);
+        }
+        set
+        {
+            LocalPosition = (Vector3)(WorldToLocalMatrix.SubMatrix(3,3) 
+                                      * (value.GetMatrix() - LocalToWorldMatrix.SubMatrix(3,0).GetColumn(2)));
         }
     }
     #endregion

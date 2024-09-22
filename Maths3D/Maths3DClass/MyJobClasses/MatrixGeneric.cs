@@ -239,6 +239,34 @@ public struct Matrix<T> where T : INumber<T>
         }
         return Adjugate(this) * (T.One / determinant);
     }
+
+    public Matrix<T> GetColumn(int column)
+    {
+        if (column < 0 || column >= NbColumns)
+        {
+            throw new IndexOutOfRangeException();
+        }
+        Matrix<T> matrix = new Matrix<T>(NbLines, 1);
+        for (int lineIndex = 0; lineIndex < NbLines; lineIndex++)
+        {
+            matrix[lineIndex, 0] = this[lineIndex, column];
+        }
+        return matrix;
+    }
+    
+    public Matrix<T> GetLine(int lineIndex)
+    {
+        if (lineIndex < 0 || lineIndex >= NbLines)
+        {
+            throw new IndexOutOfRangeException();
+        }
+        Matrix<T> matrix = new Matrix<T>(1, NbColumns);
+        for (int columnIndex = 0; columnIndex < NbLines; columnIndex++)
+        {
+            matrix[0, columnIndex] = this[lineIndex, columnIndex];
+        }
+        return matrix;
+    }
     #endregion
 
     #region STATIC METHODS
