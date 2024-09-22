@@ -6,6 +6,8 @@ public struct Vector3
     public float x { get; private set; }
     public float y { get; private set; }
     public float z { get; private set; }
+    
+    public float Magnitude => (float)Math.Sqrt(x * x + y * y + z * z);
     #endregion
     
     #region STATIC PROPERTIES
@@ -33,6 +35,18 @@ public struct Vector3
     {
         return new Matrix<float>(new float[3, 1] { { x }, { y }, { z }, });
     }
+
+    public Vector3 Normalized()
+    {
+        if (Magnitude > 0)
+        {
+            return new Vector3(this) * (1 / Magnitude);
+        }
+        else
+        {
+            return new Vector3();
+        }
+    }
     #endregion
     
     #region OPERATOR OVERRIDES
@@ -54,5 +68,24 @@ public struct Vector3
     {
         return new Vector3(vector.x, vector.y, vector.z);
     }
+
+    public static Vector3 operator *(Vector3 vec, float factor)
+    {
+        return new Vector3(vec.x * factor, vec.y * factor, vec.z * factor);
+    }
+    
+    public static Vector3 operator *(float factor, Vector3 vec)
+    {
+        return new Vector3(vec.x * factor, vec.y * factor, vec.z * factor);
+    }
+
+    public static Vector3 operator /(Vector3 vec, float factor)
+    {
+        if (factor == 0)
+        {
+            throw new DivideByZeroException();
+        }
+        return new Vector3(vec.x / factor, vec.y / factor, vec.z / factor);
+    } 
     #endregion
 }

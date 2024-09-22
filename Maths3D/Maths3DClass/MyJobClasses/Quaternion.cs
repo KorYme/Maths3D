@@ -22,4 +22,16 @@ public struct Quaternion
         this.w = w;
     }
     #endregion
+
+    #region STATIC METHODS
+    public static Quaternion AngleAxis(float angle, Vector3 axis)
+    {
+        float sin = MathsUtilities.SinWithDeg(angle / 2f);
+        float cos = MathsUtilities.CosWithDeg(angle / 2f);
+        Vector3 axisNormalized = axis.Normalized();
+        Quaternion result = new Quaternion(axisNormalized.x * sin, axisNormalized.y * sin, 
+            axisNormalized.z * sin, cos);
+        return result;
+    }
+    #endregion
 }
