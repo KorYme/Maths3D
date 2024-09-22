@@ -20,6 +20,10 @@ public struct Quaternion
             { 0, 0, 0, 1 },
         });
     }
+
+    // TODO
+    public Vector3 EulerAngles { get; set; }
+
     #endregion
 
     #region STATIC PROPERTIES
@@ -43,6 +47,14 @@ public struct Quaternion
         float cos = MathsUtilities.CosWithDeg(angle / 2f);
         Vector3 axisNormalized = axis.Normalized();
         return new Quaternion(axisNormalized.x * sin, axisNormalized.y * sin, axisNormalized.z * sin, cos);
+    }
+    
+    // TODO
+    public static Quaternion Euler(float xAngle, float yAngle, float zAngle)
+    {
+        return AngleAxis(yAngle, Vector3.Forward) 
+               * AngleAxis(xAngle, Vector3.Right) 
+               * AngleAxis(zAngle, Vector3.Up);
     }
     #endregion
 

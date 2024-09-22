@@ -11,7 +11,14 @@ public struct Vector3
     #endregion
     
     #region STATIC PROPERTIES
+    public static Vector3 Zero => new Vector3(0, 0, 0);
     public static Vector3 One => new Vector3(1, 1, 1);
+    public static Vector3 Right => new Vector3(1, 0, 0);
+    public static Vector3 Left => -Right;
+    public static Vector3 Forward => new Vector3(0, 1, 0);
+    public static Vector3 Backward => -Forward;
+    public static Vector3 Up => new Vector3(0, 0, 1);
+    public static Vector3 Down => -Up;
     #endregion
     
     #region CONSTRUCTORS
@@ -86,6 +93,11 @@ public struct Vector3
             throw new DivideByZeroException();
         }
         return new Vector3(vec.x / factor, vec.y / factor, vec.z / factor);
-    } 
+    }
+    
+    public static Vector3 operator -(Vector3 vec)
+    {
+        return new Vector3(-vec.x, -vec.y, -vec.z);
+    }
     #endregion
 }
