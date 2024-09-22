@@ -35,7 +35,6 @@ public struct Vector4
     #endregion
     
     #region OPERATORS OVERRIDES
-
     public static Vector4 operator *(Vector4 v, Matrix<float> matrix)
     {
         Matrix<float> vectorRepresentation = v.GetMatrix();
@@ -54,6 +53,11 @@ public struct Vector4
             throw new Exception("The matrix must be 4x1.");
         }
         return new Vector4(matrix[0,0], matrix[1,0], matrix[2,0], matrix[3,0]);
+    }
+
+    public static explicit operator Vector4(Vector3 vector)
+    {
+        return new Vector4(vector.x, vector.y, vector.z);
     }
     #endregion
     

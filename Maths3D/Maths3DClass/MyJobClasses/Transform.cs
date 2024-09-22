@@ -1,8 +1,11 @@
+using System.Numerics;
+
 namespace Maths_Matrices.Tests;
 
 public class Transform
 {
     #region PROPERTIES
+    public Transform Parent { get; private set; }
     public Vector3 LocalPosition { get; set; }
     public Vector3 LocalRotation { get; set; }
     public Vector3 LocalScale { get; set; } = Vector3.One;
@@ -85,18 +88,29 @@ public class Transform
     // TODO
     public Matrix<float> LocalToWorldMatrix
     {
-        get
-        {
-            return LocalTranslationMatrix * LocalRotationMatrix * LocalScaleMatrix;
-        }
+        get => (Parent == null ? Matrix<float>.Identity(4) : Parent.LocalToWorldMatrix) 
+               * LocalTranslationMatrix * LocalRotationMatrix * LocalScaleMatrix;
     }
     
     public Matrix<float> WorldToLocalMatrix
     {
+        get => LocalToWorldMatrix.InvertByDeterminant();
+    }
+
+    public Vector3 WorldPosition
+    {
         get
         {
-            return LocalToWorldMatrix.InvertByDeterminant();
+            Matrix<float> transformMatrix = LocalToWorldMatrix;
+            return new Vector3(transformMatrix[0,3], transformMatrix[1,3], transformMatrix[2,3]);
         }
+    }
+    #endregion
+
+    #region METHODS
+    public void SetParent(Transform tParent)
+    {
+        Parent = tParent;
     }
     #endregion
 }

@@ -255,7 +255,7 @@ public struct Matrix<T> where T : INumber<T>
     public static Matrix<T> Multiply(Matrix<T> matrix, T factor)
     {
         Matrix<T> newMatrix = new Matrix<T>(matrix);
-        return newMatrix.Multiply(factor);;
+        return newMatrix.Multiply(factor);
     }
 
     public static Matrix<T> Add(Matrix<T> otherMatrix, Matrix<T> matrix2)
