@@ -10,13 +10,14 @@ public struct Quaternion
     public float z { get; set; }
     public float w { get; set; }
 
-    public Matrix<float> rotationMatrix
+    public Matrix<float> Matrix
     {
-        get => new Matrix<float>(new float[3,3]
+        get => new Matrix<float>(new float[4,4]
         {
-            { 1-2*y*y-2*z*z, 2*x*y-2*w*z, 2*x*z+2*w*y },
-            { 2*x*y+2*w*z, 1-2*x*x-2*z*z, 2*y*z-2*w*x },
-            { 2*x*z-2*w*y, 2*y*z+2*w*x, 1-2*x*x-2*y*y },
+            { 1-2*y*y-2*z*z, 2*x*y-2*w*z, 2*x*z+2*w*y, 0 },
+            { 2*x*y+2*w*z, 1-2*x*x-2*z*z, 2*y*z-2*w*x, 0 },
+            { 2*x*z-2*w*y, 2*y*z+2*w*x, 1-2*x*x-2*y*y, 0 },
+            { 0, 0, 0, 1 },
         });
     }
     #endregion
@@ -56,7 +57,7 @@ public struct Quaternion
 
     public static Vector3 operator *(Quaternion q, Vector3 point)
     {
-        return (Vector3)(q.rotationMatrix * point.GetMatrix());
+        return (Vector3)(q.Matrix.SubMatrix(3,3) * point.GetMatrix());
     }
     #endregion
 }
