@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace Maths_Matrices.Tests;
 
 public struct Quaternion
@@ -22,7 +20,16 @@ public struct Quaternion
     }
 
     // TODO
-    public Vector3 EulerAngles { get; set; }
+    public Vector3 EulerAngles
+    {
+        get
+        {
+            float angleY = MathF.Asin(-2 * (x * z - w * y));
+            float angleX = MathF.Atan2(2 * (y * z + w * x), 1 - 2 * (y * y + z * z));
+            float angleZ = MathF.Atan2(2 * (x * y + w * z), 1 - 2 * (x * x + z * z));
+            return new Vector3(angleX, angleY, angleZ) * MathsUtilities.RAD_TO_DEG;
+        }
+    }
 
     #endregion
 
@@ -49,12 +56,12 @@ public struct Quaternion
         return new Quaternion(axisNormalized.x * sin, axisNormalized.y * sin, axisNormalized.z * sin, cos);
     }
     
-    // TODO
     public static Quaternion Euler(float xAngle, float yAngle, float zAngle)
     {
-        return AngleAxis(yAngle, Vector3.Forward) 
-               * AngleAxis(xAngle, Vector3.Right) 
-               * AngleAxis(zAngle, Vector3.Up);
+        Quaternion Y = AngleAxis(yAngle, Vector3.Forward);
+        Quaternion X = AngleAxis(xAngle, Vector3.Right);
+        Quaternion Z = AngleAxis(zAngle, Vector3.Up);
+        return Y * X * Z;
     }
     #endregion
 
@@ -64,7 +71,7 @@ public struct Quaternion
         return new Quaternion(q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y,
             q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x,
             q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w,
-            q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z);
+            q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z);
     }
 
     public static Vector3 operator *(Quaternion q, Vector3 point)
