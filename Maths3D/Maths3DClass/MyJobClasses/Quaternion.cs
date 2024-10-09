@@ -24,9 +24,19 @@ public struct Quaternion
     {
         get
         {
-            float angleX = MathF.Asin(2*(x*z-w*y));
-            float angleY = MathF.Atan2(2*(y*z+w*x), 1-2*(x*x+y*y));
-            float angleZ = MathF.Atan2(2*(x*y+w*z), 1-2*(y*y+z*z));
+            Matrix<float> m = Matrix;
+            float angleX = MathF.Asin(-m[1,2]);
+            float angleY, angleZ;
+            if (MathF.Cos(angleX) != 0)
+            {
+                angleY = MathF.Atan2(m[0, 2], m[2, 2]);
+                angleZ = MathF.Atan2(m[1, 0], m[1, 1]);
+            }
+            else
+            {
+                angleY = MathF.Atan2(-m[2,0], m[0,0]);
+                angleZ = 0;
+            }
             return new Vector3(angleX, angleY, angleZ) * MathsUtilities.RAD_TO_DEG;
         }
     }

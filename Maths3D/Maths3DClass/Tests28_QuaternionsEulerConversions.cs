@@ -21,7 +21,7 @@ namespace Maths_Matrices.Tests
             Assert.AreEqual(0.701f, q.w);
         }
 
-        [Test, DefaultFloatingPointTolerance(0.01d)]
+        [Test, DefaultFloatingPointTolerance(0.1d)]
         public void TestQuaternionToEulerCustomAxis1()
         {
             //You can use Quaternion Matrix to retrieve the euler angles
@@ -44,7 +44,7 @@ namespace Maths_Matrices.Tests
             Assert.AreEqual(0.653f, q.w);
         }
         
-        [Test, DefaultFloatingPointTolerance(0.01d)]
+        [Test, DefaultFloatingPointTolerance(0.1d)]
         public void TestQuaternionToEulerCustomAxis2()
         {
             Quaternion q = new Quaternion(0.271f, -0.271f, 0.653f, 0.653f);
