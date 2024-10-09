@@ -73,6 +73,11 @@ public class Transform
     {
         get => LocalRotationYMatrix * LocalRotationXMatrix * LocalRotationZMatrix;
     }
+    
+    public Quaternion LocalRotationQuaternion
+    {
+        get => Quaternion.Euler(LocalRotation.x, LocalRotation.y, LocalRotation.z);
+    }
 
     public Matrix<float> LocalScaleMatrix
     {
