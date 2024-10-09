@@ -24,13 +24,14 @@ public struct Quaternion
     {
         get
         {
-            float angleY = MathF.Asin(-2 * (x * z - w * y));
-            float angleX = MathF.Atan2(2 * (y * z + w * x), 1 - 2 * (y * y + z * z));
-            float angleZ = MathF.Atan2(2 * (x * y + w * z), 1 - 2 * (x * x + z * z));
+            float angleX = MathF.Asin(2*(x*z-w*y));
+            float angleY = MathF.Atan2(2*(y*z+w*x), 1-2*(x*x+y*y));
+            float angleZ = MathF.Atan2(2*(x*y+w*z), 1-2*(y*y+z*z));
             return new Vector3(angleX, angleY, angleZ) * MathsUtilities.RAD_TO_DEG;
         }
     }
 
+    public float Magnitude => MathF.Sqrt(x * x + y * y + z * z + w * w);
     #endregion
 
     #region STATIC PROPERTIES
